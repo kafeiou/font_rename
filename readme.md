@@ -1,6 +1,6 @@
 # 🛠️ ONLYOFFICE 字型名稱批次中文化工具
 
-本工具專門用於解決 **ONLYOFFICE Docs** 無法正確識別 `.ttc` (字型集合檔) 或預設優先顯示字型英文名稱（如將「新細明體」顯示為 `PMingLiU`）的問題。透過修改字型內部的元數據（Name Table ID 1 & 4），強迫 ONLYOFFICE 只能讀取到正確的中文顯示名稱。
+本工具專門用於解決如 **ONLYOFFICE Docs** 等 office 軟體或系統，在英文環境下，開啟中文文件無法正確識別 `.ttc`、`.ttf` 字型的中文名稱， 或預設優先顯示字型英文名稱（如將「思源黑體」顯示為 `Noto Sans TC`）的問題。透過設，讓 ONLYOFFICE 等軟體能讀取到正確的中文顯示名稱。
 
 ---
 
@@ -37,7 +37,7 @@ pip install -r requirements.txt
 ```
 
 ### 3. 放入原始字型
-手動建立 `font_source` 資料夾，並把你想要調整的微軟正黑體、新細明體、標楷體或宋體（`.ttf` 或 `.ttc` 檔）全部丟進去。
+手動建立 `font_source` 資料夾，並把你想要調整的字型（`.ttf` 或 `.ttc` 檔）全部丟進去。
 
 ---
 
@@ -52,7 +52,7 @@ python auto_generate_mapping.py
 ### 步驟 2：自訂與校對字型名稱（選用）
 用文字編輯器（如 Notepad++、VS Code 或記事本）打開新產生的 **`font_mapping_config.py`**：
 * 程式會自動幫你抓取該字型在系統中合適的中文名稱。
-* **客製化修改**：如果你想把名稱改掉（例如把「MingLiU」改為「細明體（舊字形）」），直接修改檔案中 `"to_name": "你的新名字"` 的欄位並存檔即可。
+* **客製化修改**：如果你想把名稱改掉（例如把「(Noto Sans TC」改為「思源黑體」），直接修改檔案中 `"to_name": "你的新名字"` 的欄位並存檔即可。
 * ⚠️ *注意：同一個 TTC 檔案內部的多個子字型，請盡量給予不同的 `to_name`，避免 ONLYOFFICE 發生覆蓋衝突。*
 
 ### 步驟 3：一鍵執行字型轉換
@@ -69,7 +69,7 @@ python rename_font.py
 ```bash
 python view_font_info.py
 ```
-它會直接印出 `font_source` 裡所有字型的內部 Name ID 1（字型家族）與 Name ID 4（完整名稱）的所有語言版本，方便你進行排錯或核對。
+它會直接印出 `font_source` 裡所有字型的內部完整名稱，方便你進行排錯或核對。
 
 ---
 
